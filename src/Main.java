@@ -24,10 +24,33 @@ public class Main {
      * @param b the value of the second number
      */
     private static void Task1(int a, int b){
-        EuclidGCD.run(a, b);
+        System.out.println("Input: a = " + a + ", b = " + b);
+        System.out.println("%: " + EuclidGCD.gcd_perc(a,b));
+        System.out.println("FloorMod: " + EuclidGCD.gcd_floorMod(a,b));
+        System.out.println("Rem: " + EuclidGCD.gcd_rem(a,b));
+    }
+
+    /**
+     * Task: Implement a bidirectional Rot13 algorithm.
+     * Encode/decode a string from the command line argument.
+     *
+     * @param to_encode string to encode
+     * @param to_decode string to decode
+     */
+    private static void Task2(String to_encode, String to_decode){
+        System.out.println("String to encode: " + to_encode);
+        String encoded = Rot13Eng.encode(to_encode);
+        System.out.println("Encoded: " + encoded);
+        System.out.println("Check(Decode): " + Rot13Eng.decode(encoded));
+
+        System.out.println("String to decode: " + to_decode);
+        String decoded = Rot13Eng.decode(to_decode);
+        System.out.println("Decoded: " + decoded);
+        System.out.println("Check(Encode): " + Rot13Eng.encode(decoded));
     }
 
     public static void main(String[] args) {
-        Task1(8, -2);
+        //Task1(8, -2);
+        //Task2(args[0], args[1]);
     }
 }
