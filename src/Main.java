@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * First assignment of the course "Intellectual systems" that consist of 10 tasks.
@@ -51,15 +53,29 @@ public class Main {
 
     /**
      * Task: Write a program to convert an input hexadecimal string into its equivalent decimal number.
+     *
+     * @param input string to convert
      */
     private static void Task3(String input){
         System.out.println("HEX: " + input);
         System.out.println("DEC: " + HexToDec.convert(input));
     }
 
+    /**
+     * Task: Write methods that turn a Scanner into a stream of words, lines, integers, or double values.
+     *
+     * @param test_scanner Scanner to turn to a Stream
+     */
+    private static void Task4(Scanner test_scanner){
+        Stream result_stream = ScannerToStream.getStream(test_scanner);
+        System.out.println(result_stream.count());
+        result_stream.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         //Task1(8, -2);
         //Task2(args[0], args[1]);
-        Task3("DEADBEAF");
+        //Task3("DEADBEAF");
+        Task4(new Scanner("12 546 1427 8421"));
     }
 }
