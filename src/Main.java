@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -72,10 +71,38 @@ public class Main {
         result_stream.forEach(System.out::println);
     }
 
+    /**
+     * Task: Unzip the src.zip file from the JDK. Using Files.walk,
+     * find all Java files that contain the keywords transient and volatile
+     */
+    private static void Task5(){
+
+    }
+
+    /**
+     * Task: Write an example that counts the number of times a particular character, such as E, appears in a file.
+     * The character can be specified at the command line.
+     *
+     * @param filename name of the file
+     * @param c character to count
+     */
+    private static void Task6(String filename, char c){
+        try {
+            System.out.println("File: " + filename);
+            System.out.println("Character: " + c);
+            int count = CharCounter.count(filename, c);
+            System.out.println("Count: " + count);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         //Task1(8, -2);
         //Task2(args[0], args[1]);
         //Task3("DEADBEAF");
-        Task4(new Scanner("12 546 1427 8421"));
+        //Task4(new Scanner("12 546 1427 8421"));
+        //Task5();
+        Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
     }
 }
