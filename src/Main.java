@@ -1,4 +1,6 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -56,8 +58,12 @@ public class Main {
      * @param input string to convert
      */
     private static void Task3(String input){
-        System.out.println("HEX: " + input);
-        System.out.println("DEC: " + HexToDec.convert(input));
+        try {
+            System.out.println("HEX: " + input);
+            System.out.println("DEC: " + HexToDec.convert(input));
+        } catch (IllegalArgumentException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     /**
@@ -92,8 +98,34 @@ public class Main {
             System.out.println("Character: " + c);
             int count = CharCounter.count(filename, c);
             System.out.println("Count: " + count);
+        } catch (FileNotFoundException e){
+            System.out.println("Error: File not found - " + filename);
         } catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Task: Write a program that reads a text file, specified by the first command line argument, into a List.
+     * The program should then print random lines from the file, the number of lines printed to be specified
+     * by the second command line argument. Write the program so that a correctly-sized collection is allocated
+     * all at once, instead of being gradually expanded as the file is read in.
+     *
+     * @param filename path to the file
+     * @param number number of random lines
+     */
+    private static void Task7(String filename, int number){
+        try {
+            List<String> output = FileToStringList.getList(filename, number);
+            for (String line : output) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("Error: File not found - " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e){
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -103,6 +135,7 @@ public class Main {
         //Task3("DEADBEAF");
         //Task4(new Scanner("12 546 1427 8421"));
         //Task5();
-        Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
+        //Task6(System.getProperty("user.dir") + "\\test.txt", arg[0]);
+        Task7(System.getProperty("user.dir") + "\\test.txt", 5);
     }
 }
