@@ -129,6 +129,23 @@ public class Main {
         }
     }
 
+    /**
+     * Task: Using Stream.iterate, make an infinite stream of random numbers—not by calling Math.random but by
+     * directly implementing a linear congruential generator. In such a generator, you start with x0 = seed and then
+     * produce xn + 1 = (a xn + c) % m, for appropriate values of a, c, and m. You should implement a method
+     * with parameters a, c, m, and seed that yields a Stream. Try out a = 25214903917, c = 11, and m = 2^48.
+     *
+     * @param seed generation seed
+     * @param a generator parameter a
+     * @param c generator parameter c
+     * @param m generator parameter m
+     * @param num number of sequence elements to print
+     */
+    private static void Task8(Long seed, Long a, Long c, Long m, int num){
+        Stream<Long> random = RandomNumbersStream.getStream(seed, a, c, m);
+        random.limit(num).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         //Task1(8, -2);
         //Task2(args[0], args[1]);
@@ -136,6 +153,7 @@ public class Main {
         //Task4(new Scanner("12 546 1427 8421"));
         //Task5();
         //Task6(System.getProperty("user.dir") + "\\test.txt", arg[0]);
-        Task7(System.getProperty("user.dir") + "\\test.txt", 5);
+        //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
+        Task8(256L, 25214903917L, 11L, 2^48L, 25);
     }
 }
