@@ -49,8 +49,17 @@ public class Main {
         System.out.println("Check(Encode): " + Rot13Eng.encode(decoded));
     }
 
+    /**
+     * Task: Write a program to convert an input hexadecimal string into its equivalent decimal number.
+     */
+    private static void Task3(String input){
+        System.out.println("HEX: " + input);
+        System.out.println("DEC: " + HexToDec.convert(input));
+    }
+
     public static void main(String[] args) {
         //Task1(8, -2);
         //Task2(args[0], args[1]);
+        Task3("DEADBEAF");
     }
 }
