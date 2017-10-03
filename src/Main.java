@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -21,7 +22,6 @@ public class Main {
      * Implement the algorithm with %, floorMod, and a rem function that produces the
      * mathematical (non-negative) remainder.
      * Which of the three gives you the least hassle with negative values?
-     *
      *
      * @param a the value of the first number
      * @param b the value of the second number
@@ -80,9 +80,16 @@ public class Main {
     /**
      * Task: Unzip the src.zip file from the JDK. Using Files.walk,
      * find all Java files that contain the keywords transient and volatile.
+     *
+     * @param filename path to a zip file
      */
-    private static void Task5(){
-
+    private static void Task5(String filename) {
+        try {
+            List<Path> files = TransientVolatile.getFiles(filename);
+            files.forEach(System.out::println);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -163,10 +170,10 @@ public class Main {
         //Task2(args[0], args[1]);
         //Task3("DEADBEAF");
         //Task4(new Scanner("12 546 1427 8421"));
-        //Task5();
+        Task5(System.getProperty("user.dir") + "\\test.zip");
         //Task6(System.getProperty("user.dir") + "\\test.txt", arg[0]);
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
         //Task8(256L, 25214903917L, 11L, 2^48L, 25);
-        Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
+        //Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
     }
 }
