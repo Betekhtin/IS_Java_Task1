@@ -79,7 +79,7 @@ public class Main {
 
     /**
      * Task: Unzip the src.zip file from the JDK. Using Files.walk,
-     * find all Java files that contain the keywords transient and volatile
+     * find all Java files that contain the keywords transient and volatile.
      */
     private static void Task5(){
 
@@ -146,6 +146,18 @@ public class Main {
         random.limit(num).forEach(System.out::println);
     }
 
+    /**
+     * Task: Write a method public static Stream zip(Stream first, Stream second) that alternates elements from the
+     * streams first and second, stopping when one of them runs out of elements.
+     *
+     * @param first_stream first stream
+     * @param second_stream second stream
+     */
+    private static void Task9(Stream first_stream, Stream second_stream){
+        Stream result = StreamZip.zip(first_stream, second_stream);
+        result.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         //Task1(8, -2);
         //Task2(args[0], args[1]);
@@ -154,6 +166,7 @@ public class Main {
         //Task5();
         //Task6(System.getProperty("user.dir") + "\\test.txt", arg[0]);
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
-        Task8(256L, 25214903917L, 11L, 2^48L, 25);
+        //Task8(256L, 25214903917L, 11L, 2^48L, 25);
+        Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
     }
 }
