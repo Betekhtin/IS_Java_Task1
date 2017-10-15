@@ -14,6 +14,8 @@ import java.util.stream.Stream;
  */
 public class Main {
 
+
+
     /**
      * Task: Euclid’s algorithm (which is over two thousand years old)
      * computes the greatest common divisor of two numbers as gcd(a, b) = a if b is zero,
@@ -23,14 +25,21 @@ public class Main {
      * mathematical (non-negative) remainder.
      * Which of the three gives you the least hassle with negative values?
      *
-     * @param a the value of the first number
-     * @param b the value of the second number
+     * @param x first number
+     * @param y second number
      */
-    private static void Task1(int a, int b){
-        System.out.println("Input: a = " + a + ", b = " + b);
-        System.out.println("%: " + EuclidGCD.gcd_perc(a,b));
-        System.out.println("FloorMod: " + EuclidGCD.gcd_floorMod(a,b));
-        System.out.println("Rem: " + EuclidGCD.gcd_rem(a,b));
+    private static void Task1(int x, int y) {
+        TestPair[] test_pairs = TestPair.generatePairs(x, y);
+        for (TestPair pair: test_pairs) {
+            int a = pair.getFirst();
+            int b = pair.getSecond();
+            System.out.println("-----------------------------------------");
+            System.out.println("Input: a = " + a + ", b = " + b);
+            System.out.println("%: " + EuclidGCD.gcd_perc(a, b));
+            System.out.println("FloorMod: " + EuclidGCD.gcd_floorMod(a, b));
+            System.out.println("Rem: " + EuclidGCD.gcd_rem(a, b));
+            System.out.println("-----------------------------------------");
+        }
     }
 
     /**
@@ -40,7 +49,7 @@ public class Main {
      * @param to_encode string to encode
      * @param to_decode string to decode
      */
-    private static void Task2(String to_encode, String to_decode){
+    private static void Task2(String to_encode, String to_decode) {
         System.out.println("String to encode: " + to_encode);
         String encoded = Rot13Eng.encode(to_encode);
         System.out.println("Encoded: " + encoded);
@@ -57,10 +66,14 @@ public class Main {
      *
      * @param input string to convert
      */
-    private static void Task3(String input){
+    private static void Task3(String input) {
         try {
             System.out.println("HEX: " + input);
-            System.out.println("DEC: " + HexToDec.convert(input));
+            Long resultStandard = HexToDec.convertStandard(input);
+            System.out.println("Convert using standard methods: " + resultStandard);
+            Long result = HexToDec.convert(input);
+            System.out.println("Convert using iteration through string: " + result);
+            System.out.println("First result equals second result: " + resultStandard.equals(result));
         } catch (IllegalArgumentException e){
             System.out.println("Error: " + e.getMessage());
         }
@@ -71,7 +84,7 @@ public class Main {
      *
      * @param test_scanner Scanner to turn to a Stream
      */
-    private static void Task4(Scanner test_scanner){
+    private static void Task4(Scanner test_scanner) { //TODO: int, string, word, double
         Stream result_stream = ScannerToStream.getStream(test_scanner);
         System.out.println(result_stream.count());
         result_stream.forEach(System.out::println);
@@ -99,7 +112,7 @@ public class Main {
      * @param filename name of the file
      * @param c character to count
      */
-    private static void Task6(String filename, char c){
+    private static void Task6(String filename, char c) {
         try {
             System.out.println("File: " + filename);
             System.out.println("Character: " + c);
@@ -121,7 +134,7 @@ public class Main {
      * @param filename path to the file
      * @param number number of random lines
      */
-    private static void Task7(String filename, int number){
+    private static void Task7(String filename, int number) {
         try {
             List<String> output = FileToStringList.getList(filename, number);
             for (String line : output) {
@@ -148,7 +161,7 @@ public class Main {
      * @param m generator parameter m
      * @param num number of sequence elements to print
      */
-    private static void Task8(Long seed, Long a, Long c, Long m, int num){
+    private static void Task8(Long seed, Long a, Long c, Long m, int num) {
         Stream<Long> random = RandomNumbersStream.getStream(seed, a, c, m);
         random.limit(num).forEach(System.out::println);
     }
@@ -160,18 +173,22 @@ public class Main {
      * @param first_stream first stream
      * @param second_stream second stream
      */
-    private static void Task9(Stream first_stream, Stream second_stream){
-        Stream result = StreamZip.zip(first_stream, second_stream);
+    private static void Task9(Stream first_stream, Stream second_stream) { //TODO: iterators
+        Stream result = StreamMerge.zip(first_stream, second_stream);
         result.forEach(System.out::println);
     }
 
+    private static void Task10(){
+
+    }
+
     public static void main(String[] args) {
-        //Task1(8, -2);
+        //Task1(8, 2);
         //Task2(args[0], args[1]);
         //Task3("DEADBEAF");
         //Task4(new Scanner("12 546 1427 8421"));
-        Task5(System.getProperty("user.dir") + "\\test.zip");
-        //Task6(System.getProperty("user.dir") + "\\test.txt", arg[0]);
+        //Task5(System.getProperty("user.dir") + "\\test.zip");
+        //Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
         //Task8(256L, 25214903917L, 11L, 2^48L, 25);
         //Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));

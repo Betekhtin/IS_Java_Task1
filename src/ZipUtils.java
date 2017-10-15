@@ -33,7 +33,7 @@ public class ZipUtils
         return s == -1 ? null : name.substring( 0, s );
     }
 
-    /***
+    /**
      * Extract zipfile to outdir with complete directory structure
      * @param zipfile Input .zip file
      * @param outdir Output directory

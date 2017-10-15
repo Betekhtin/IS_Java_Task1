@@ -5,7 +5,7 @@ import java.util.stream.Stream;
  * Class to merge two input streams into one stream that alternates their elements
  * @author Betehtin Artem
  */
-class StreamZip {
+class StreamMerge {
 
     /**
      * Make a stream that alternates elements from two finite streams
