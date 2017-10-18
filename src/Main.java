@@ -187,7 +187,7 @@ public class Main {
      * @param second_stream second stream
      */
     private static void Task9(Stream first_stream, Stream second_stream) { //TODO: iterators
-        Stream result = StreamMerge.zip(first_stream, second_stream);
+        Stream result = StreamMerge.merge(first_stream, second_stream);
         result.forEach(System.out::println);
     }
 
@@ -199,11 +199,11 @@ public class Main {
         //Task1(8, 2);
         //Task2(args[0], args[1]);
         //Task3("DEADBEAF");
-        Task4("12 546 3.5 8421" + System.lineSeparator() + "hello world 33.01");
+        //Task4("12 546 3.5 8421" + System.lineSeparator() + "hello world 33.01");
         //Task5(System.getProperty("user.dir") + "\\test.zip");
         //Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
         //Task8(256L, 25214903917L, 11L, 2^48L, 25);
-        //Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
+        Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
     }
 }

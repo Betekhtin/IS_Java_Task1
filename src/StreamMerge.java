@@ -1,4 +1,6 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -12,20 +14,17 @@ class StreamMerge {
      *
      * @param first_stream first stream
      * @param second_stream second stream
-     * @return zip stream
+     * @return merged steam
      */
-    static Stream zip(Stream first_stream, Stream second_stream){
-        Object[] first_list = first_stream.toArray();
-        Object[] second_list = second_stream.toArray();
-        int result_length = Math.min(first_list.length, second_list.length);
-        Object[] result_list = new Object[2 * result_length];
-        int j = 0;
-        for (int i = 0; i < result_length; ++i){
-            result_list[j++] = first_list[i];
-            result_list[j++] = second_list[i];
+    static Stream merge(Stream first_stream, Stream second_stream){
+        Iterator first_iter = first_stream.iterator();
+        Iterator second_iter = second_stream.iterator();
+        List result = new ArrayList();
+        while(first_iter.hasNext() && second_iter.hasNext()){
+            result.add(first_iter.next());
+            result.add(second_iter.next());
         }
-        return Arrays.stream(result_list);
-
+        return result.stream();
     }
 
 }
