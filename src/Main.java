@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -13,8 +14,6 @@ import java.util.stream.Stream;
  * @author Betehtin Artem
  */
 public class Main {
-
-
 
     /**
      * Task: Euclid’s algorithm (which is over two thousand years old)
@@ -82,12 +81,26 @@ public class Main {
     /**
      * Task: Write methods that turn a Scanner into a stream of words, lines, integers, or double values.
      *
-     * @param test_scanner Scanner to turn to a Stream
+     * @param test_string string to make Scanners of
      */
-    private static void Task4(Scanner test_scanner) { //TODO: int, string, word, double
-        Stream result_stream = ScannerToStream.getStream(test_scanner);
-        System.out.println(result_stream.count());
-        result_stream.forEach(System.out::println);
+    private static void Task4(String test_string) {
+        //Generate multiple scanners for a same string to test all the methods
+        Scanner scanner1 = new Scanner(test_string);
+        Stream<Integer> integer_stream = ScannerToStream.getIntStream(scanner1);
+        Scanner scanner2 = new Scanner(test_string);
+        Stream<Double> double_stream = ScannerToStream.getDoubleStream(scanner2);
+        Scanner scanner3 = new Scanner(test_string);
+        Stream<String> word_stream = ScannerToStream.getWordStream(scanner3);
+        Scanner scanner4 = new Scanner(test_string);
+        Stream<String> line_stream = ScannerToStream.getLineStream(scanner4);
+        System.out.println("Integers:");
+        integer_stream.forEach(System.out::println);
+        System.out.println("Doubles:");
+        double_stream.forEach(System.out::println);
+        System.out.println("Words:");
+        word_stream.forEach(System.out::println);
+        System.out.println("Lines:");
+        line_stream.forEach(System.out::println);
     }
 
     /**
@@ -186,7 +199,7 @@ public class Main {
         //Task1(8, 2);
         //Task2(args[0], args[1]);
         //Task3("DEADBEAF");
-        //Task4(new Scanner("12 546 1427 8421"));
+        Task4("12 546 3.5 8421" + System.lineSeparator() + "hello world 33.01");
         //Task5(System.getProperty("user.dir") + "\\test.zip");
         //Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);

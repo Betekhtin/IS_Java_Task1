@@ -1,10 +1,8 @@
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.function.Supplier;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
- * Class to turn Scanner into a Stream
+ * Class to turn Scanners into Streams of different types
  * @author Betehtin Artem
  * @see Scanner
  * @see Stream
@@ -12,44 +10,64 @@ import java.util.stream.Stream;
 class ScannerToStream{
 
     /**
-     * Private class that generates supplier from a scanner, so then a stream can be generated from this supplier.
+     * Makes a stream of all words in a scanner
      *
-     * @see Supplier
+     * @param scanner Scanner to convert to a Stream
+     * @return Stream of all words from a scanner
      */
-    private static class ScannerToSupplier implements Supplier {
-
-        private Scanner scanner;
-
-        ScannerToSupplier(Scanner scanner){
-            this.scanner = scanner;
+    static Stream<String> getWordStream(Scanner scanner) {
+        Stream<String> stream = Stream.empty();
+        while (scanner.hasNext()) {
+            String value = scanner.next();
+            stream = Stream.concat(stream, Stream.of(value));
         }
-
-        /**
-         * Supplies elements of the Scanner one by one. If Scanner runs out of elements, returns null.
-         *
-         * @return next element of the Supplier if it exist, else null
-         */
-        @Override
-        public Object get() {
-            if (scanner.hasNext()) {
-                return scanner.next();
-            }
-            else {
-                return null;
-            }
-        }
+        return stream;
     }
 
     /**
-     * Returns Stream generated from a Scanner using intermediate supplier.
-     * If Scanner runs out of element, nulls from the Supplier will be discarded.
+     * Makes a stream of all lines in a scanner
      *
      * @param scanner Scanner to convert to a Stream
-     * @return Stream
+     * @return Stream of all lines from a scanner
      */
-    static Stream getStream(Scanner scanner){
-        ScannerToSupplier supplier = new ScannerToSupplier(scanner);
-        return Stream.generate(supplier).filter(Objects::nonNull);
+    static Stream<String> getLineStream(Scanner scanner) {
+        Stream<String> stream = Stream.empty();
+        while (scanner.hasNextLine()) {
+            String value = scanner.nextLine();
+            stream = Stream.concat(stream, Stream.of(value));
+        }
+        return stream;
     }
+
+    /**
+     * Makes a stream of all integers in a scanner
+     *
+     * @param scanner Scanner to convert to a Stream
+     * @return Stream of all integers from a scanner
+     */
+    static Stream<Integer> getIntStream(Scanner scanner) {
+        Stream<Integer> stream = Stream.empty();
+        while (scanner.hasNextInt()) {
+            Integer value = scanner.nextInt();
+            stream = Stream.concat(stream, Stream.of(value));
+        }
+        return stream;
+    }
+
+    /**
+     * Makes a stream of all doubles in a scanner
+     *
+     * @param scanner Scanner to convert to a Stream
+     * @return Stream of all doubles from a scanner
+     */
+    static Stream<Double> getDoubleStream(Scanner scanner) {
+        Stream<Double> stream = Stream.empty();
+        while (scanner.hasNextDouble()) {
+            Double value = scanner.nextDouble();
+            stream = Stream.concat(stream, Stream.of(value));
+        }
+        return stream;
+    }
+
 
 }
