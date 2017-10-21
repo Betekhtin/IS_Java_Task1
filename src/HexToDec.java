@@ -14,11 +14,9 @@ class HexToDec {
      * @throws IllegalArgumentException if input string is not a hexadecimal number
      */
     static Long convertStandard(String input){
-        if (input.matches("[0-9A-F]+")){ //Check if input string is hex number
-            return Long.parseLong(input, 16);
-        } else {
+        if (input.matches("[0-9A-F]+")) //Check if input string is hex number
             throw new IllegalArgumentException("Input string must be hexadecimal number.");
-        }
+        return Long.parseLong(input, 16);
     }
 
     /**
@@ -29,18 +27,16 @@ class HexToDec {
      * @throws IllegalArgumentException if input string is not a hexadecimal number
      */
     static Long convert(String input) {
-        if (input.matches("[0-9A-F]+")){ //Check if input string is hex number
-            Long result = 0L;
-            Long current_pow = 1L;
-            String s = new StringBuilder(input).reverse().toString();
-            for (int i = 0; i < s.length(); i++) {
-                result += hex_digits.indexOf(s.charAt(i)) * current_pow;
-                current_pow *= 16;
-            }
-            return result;
-        } else {
+        if (input.matches("[0-9A-F]+")) //Check if input string is hex number
             throw new IllegalArgumentException("Input string must be hexadecimal number.");
+        Long result = 0L;
+        Long current_pow = 1L;
+        String s = new StringBuilder(input).reverse().toString();
+        for (int i = 0; i < s.length(); i++) {
+            result += hex_digits.indexOf(s.charAt(i)) * current_pow;
+            current_pow *= 16;
         }
+        return result;
     }
 
 }

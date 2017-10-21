@@ -186,7 +186,7 @@ public class Main {
      * @param first_stream first stream
      * @param second_stream second stream
      */
-    private static void Task9(Stream first_stream, Stream second_stream) { //TODO: iterators
+    private static void Task9(Stream first_stream, Stream second_stream) {
         Stream result = StreamMerge.merge(first_stream, second_stream);
         result.forEach(System.out::println);
     }
@@ -204,6 +204,7 @@ public class Main {
         //Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
         //Task8(256L, 25214903917L, 11L, 2^48L, 25);
-        Task9(Stream.of(1, 3, 5, 7, 9), Stream.of(2, 4, 6, 8, 10));
+        Task9(RandomNumbersStream.getStream(1,1,2,256).limit(50), RandomNumbersStream.getStream(2,1,2,256).limit(50));
+        //Task10();
     }
 }
