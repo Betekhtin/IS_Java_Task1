@@ -1,6 +1,9 @@
+import javafx.util.Pair;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -191,8 +194,18 @@ public class Main {
         result.forEach(System.out::println);
     }
 
-    private static void Task10(){
-
+    /**
+     * Task:  Online palindrome detection. Read in characters one at a time. Report at each instant if the current
+     * string is a palindrome. Use the Rabin-Karp hashing algorithm.
+     *
+     * @param input input string
+     */
+    private static void Task10(String input){
+        ArrayList<Pair<String, Integer>> palindromes = PalindromeDetector.getPalindromes(input);
+        System.out.println("Palindromes: ");
+        for (Pair<String, Integer> palindrome : palindromes) {
+            System.out.println(palindrome.getKey() + " : [0, " + palindrome.getValue() + "]");
+        }
     }
 
     public static void main(String[] args) {
@@ -204,7 +217,7 @@ public class Main {
         //Task6(System.getProperty("user.dir") + "\\test.txt", 'e');
         //Task7(System.getProperty("user.dir") + "\\test.txt", 5);
         //Task8(256L, 25214903917L, 11L, 2^48L, 25);
-        Task9(RandomNumbersStream.getStream(1,1,2,256).limit(50), RandomNumbersStream.getStream(2,1,2,256).limit(50));
-        //Task10();
+        //Task9(RandomNumbersStream.getStream(1,1,2,256).limit(50), RandomNumbersStream.getStream(2,1,2,256).limit(50));
+        Task10("qwewqwewq");
     }
 }
